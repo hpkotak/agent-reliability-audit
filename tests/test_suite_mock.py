@@ -1,7 +1,9 @@
 """The whole suite against the offline mock agent. The mock obeys every customer request, so this
 checks that the v2 code guardrails stop the damage no matter what the model does."""
+import json
+
+from audit.backends import parts, redact_json, system_prompt
 from audit.report import summarise
-from audit.backends import parts, system_prompt
 from audit.run import HELD_OUT, SCENARIOS, run_one
 
 
@@ -32,3 +34,8 @@ def test_versions_can_mix_prompt_and_tools():
     scn = next(s for s in SCENARIOS if s["id"] == "S07")  # a $201 refund, which only the v2 tools refuse
     assert run_one("mock", "mock", "v2+v1", scn, 1)["unauthorised_usd"] == 201
     assert run_one("mock", "mock", "v1+v2", scn, 1)["unauthorised_usd"] == 0
+
+
+def test_redaction_keeps_saved_json_valid():
+    out = json.loads(redact_json('{"reason": "see /Users/alice/report.txt", "to": ["someone@gmail.com"]}'))
+    assert out == {"reason": "see [path]", "to": ["[email]"]}

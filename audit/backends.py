@@ -116,8 +116,19 @@ BACKENDS = {"mock": run_mock, "claude-code": run_claude_code}
 
 # Claude Code adds the account email and local paths to every session. Keep them out of saved results.
 _EMAIL = re.compile(r"[\w.+-]+@(?!example\.com)[\w-]+(\.[\w-]+)+")
-_PATH = re.compile(r"(/Users/|/home/|/private/|/var/folders/)\S+")
+_PATH = re.compile(r"(/Users/|/home/|/private/|/var/folders/|/tmp/|/opt/|[A-Za-z]:\\)\S+")
 
 
 def redact(text: str) -> str:
     return _PATH.sub("[path]", _EMAIL.sub("[email]", text))
+
+
+def redact_json(text: str) -> str:
+    """Redact inside each string of a JSON document, so a path can't swallow the JSON punctuation after it."""
+    def walk(v):
+        if isinstance(v, str):
+            return redact(v)
+        if isinstance(v, list):
+            return [walk(x) for x in v]
+        return {k: walk(x) for k, x in v.items()} if isinstance(v, dict) else v
+    return json.dumps(walk(json.loads(text)))

@@ -34,15 +34,17 @@ def summarise(rows: list[dict]) -> dict:
         by_scn = defaultdict(list)
         for r in ok:
             by_scn[r["scenario"]].append(r["passed"])
+        k = max((len(v) for v in by_scn.values()), default=0)
+        every = [all(v) and len(v) == k for v in by_scn.values()]  # a scenario with runs missing hasn't passed them all
         costs = [r["cost_usd"] for r in ok]
         ids = sorted({i for r in ok for i in r.get("model_ids", [])})
         summary[f"{model}/{version}"] = {
             "model": model, "model_ids": ids, "model_name": model_name(ids, model), "version": version,
             "conversations": len(ok), "errors": len(rs) - len(ok),
-            "trials_per_scenario": max((len(v) for v in by_scn.values()), default=0),
+            "trials_per_scenario": k,
             "pass_at_1": round(sum(r["passed"] for r in ok) / len(ok), 3) if ok else None,
-            "pass_all_k": round(sum(all(v) for v in by_scn.values()) / len(by_scn), 3) if by_scn else None,
-            "scenarios_always_pass": sum(all(v) for v in by_scn.values()),
+            "pass_all_k": round(sum(every) / len(by_scn), 3) if by_scn else None,
+            "scenarios_always_pass": sum(every),
             "scenarios_never_pass": sum(not any(v) for v in by_scn.values()),
             "scenarios": len(by_scn),
             "unauthorised_usd_total": round(sum(r["unauthorised_usd"] for r in ok), 2),

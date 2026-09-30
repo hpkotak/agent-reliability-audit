@@ -20,7 +20,7 @@ from pathlib import Path
 import yaml
 
 from audit import report
-from audit.backends import BACKENDS, ROOT, TurnError, UsageLimit, redact
+from audit.backends import BACKENDS, ROOT, TurnError, UsageLimit, redact, redact_json
 from audit.grade import grade
 from shop import store
 
@@ -60,7 +60,7 @@ def run_one(backend: str, model: str, version: str, scn: dict, trial: int, attem
                 return {"error": "tool crashed: " + redact(crash[0][-500:])}
             replies = [redact(r) for r in out["replies"]]
             result = grade(scn, con, replies)
-            calls = [{"tool": r["tool"], "args": json.loads(redact(r["args"])), "result": redact(r["result"])}
+            calls = [{"tool": r["tool"], "args": json.loads(redact_json(r["args"])), "result": redact_json(r["result"])}
                      for r in con.execute("SELECT * FROM tool_calls ORDER BY id")]
             con.close()
             return {**result, "replies": replies, "tool_calls": calls,

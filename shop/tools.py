@@ -160,7 +160,7 @@ class ToolsV2(_Base):
             err = "Refund amount must be a positive number."
         elif amount > v["refundable_remaining"]:
             err = f"Amount exceeds what is left to refund on this order (${v['refundable_remaining']:.2f})."
-        elif v["refunded_so_far"] + amount > AUTO_REFUND_LIMIT:
+        elif round(v["refunded_so_far"] + amount, 2) > AUTO_REFUND_LIMIT:  # in cents: 0.1 + 0.2 is not 0.3
             err = (f"Needs human approval: refunds on one order above ${AUTO_REFUND_LIMIT} in total must be "
                    "approved by a person. Call escalate instead; do not tell the customer it is refunded.")
         if err:

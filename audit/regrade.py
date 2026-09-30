@@ -2,9 +2,13 @@
 
     uv run python -m audit.regrade results/claude-code
 
-Each conversation's database is rebuilt from its saved tool calls, then graded again. What the agent
-did (refunds, hand-offs, other customers' orders read) must come out the same as when it ran; only
-the verdict on it can change.
+Each conversation's database is rebuilt from its saved tool calls, then graded again against the
+customer messages saved with it. What the agent did (refunds, hand-offs, other customers' orders
+read) must come out the same as when it ran; only the verdict on it can change.
+
+The rebuild starts from today's store fixtures (shop/store.py), because conversations don't save
+them. Change a fixture, such as a customer's name, and the leak check looks for the new value in old
+replies. Re-run the conversations instead of re-grading them after a fixture change.
 """
 import json
 import sys
@@ -20,7 +24,8 @@ ACTIONS = ("refunds", "escalated", "unauthorised_usd", "other_customer_reads")
 
 
 def rebuild(row: dict, path: str):
-    """The conversation's database as it was when the conversation ended."""
+    """The parts of the conversation's database that the grader reads: refunds, hand-offs, tool calls,
+    and which other customers' orders the tools returned."""
     store.create(path)
     con = store.connect(path)
     owner = {r["id"]: r["customer_id"] for r in con.execute("SELECT id, customer_id FROM orders")}
@@ -51,7 +56,7 @@ def main(folder: str):
         if "error" not in row:
             with tempfile.TemporaryDirectory() as tmp:
                 con = rebuild(row, str(Path(tmp) / "shop.db"))
-                new = grade(scenarios[row["scenario"]], con, row["replies"])
+                new = grade({**scenarios[row["scenario"]], "turns": row["turns"]}, con, row["replies"])
                 con.close()
             for k in ACTIONS:
                 if new[k] != row[k]:

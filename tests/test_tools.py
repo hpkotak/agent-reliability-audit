@@ -50,6 +50,12 @@ def test_v2_boundaries_allowed(db):
     assert call(t.issue_refund, "A1007", 50, "the remaining $50")["ok"]
 
 
+def test_v2_limit_is_compared_in_cents(db):
+    t = ToolsV2(db)
+    for amount in (25.27, 144.77, 29.96):  # $200.00 exactly, 200.00000000000003 as floats
+        assert call(t.issue_refund, "A1008", amount, "part")["ok"]
+
+
 def test_v2_cumulative_limit_blocks_split_refunds(db):
     t = ToolsV2(db)
     assert call(t.issue_refund, "A1008", 150, "first part")["ok"]
