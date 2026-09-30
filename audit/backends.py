@@ -12,6 +12,7 @@ import tempfile
 import uuid
 from pathlib import Path
 
+from shop import store
 from shop.tools import TOOL_NAMES, VERSIONS
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -19,8 +20,21 @@ ROOT = Path(__file__).resolve().parent.parent
 SANDBOX = Path(tempfile.gettempdir()) / "agent-audit-sandbox"
 
 
+def parts(version: str) -> tuple[str, str]:
+    """(prompt, tools). "v2" is the v2 prompt with the v2 tools. "v2+v1" is the v2 prompt with the v1
+    tools, which shows what the prompt does on its own."""
+    prompt, _, tools = version.partition("+")
+    return prompt, tools or prompt
+
+
 def system_prompt(version: str) -> str:
-    return (ROOT / "prompts" / f"{version}.md").read_text()
+    prompt, tools = parts(version)
+    text = (ROOT / "prompts" / f"{prompt}.md").read_text()
+    if (prompt, tools) == ("v2", "v1"):
+        # The v1 tools look orders up by email. The v2 prompt has no reason to give one, and without it
+        # the model borrows the account email from Claude Code's environment block and finds no orders.
+        text += "\nThe logged-in customer's email is alice.moreno@example.com.\n"
+    return text
 
 
 class TurnError(RuntimeError):
@@ -34,16 +48,18 @@ class UsageLimit(RuntimeError):
 def run_claude_code(turns: list[str], version: str, model: str, db_path: str, workdir: str) -> dict:
     """The agent is `claude -p` with our system prompt, no built-in tools, and only the shop tools (MCP)."""
     SANDBOX.mkdir(exist_ok=True)
+    tools = parts(version)[1]
     mcp_path = Path(workdir) / "mcp.json"
     mcp_path.write_text(json.dumps({"mcpServers": {"shop": {
         "command": sys.executable, "args": ["-m", "shop.server"],
-        "env": {"PYTHONPATH": str(ROOT), "SHOP_DB": db_path, "SHOP_VERSION": version, "SHOP_CUSTOMER": "C1"}}}}))
+        "env": {"PYTHONPATH": str(ROOT), "SHOP_DB": db_path, "SHOP_VERSION": tools, "SHOP_CUSTOMER": "C1"}}}}))
     session = str(uuid.uuid4())
     replies, cost, ms, model_ids = [], 0.0, 0, set()
     for i, msg in enumerate(turns):
+        store.record_customer_message(db_path, msg)
         cmd = ["claude", "-p", msg, "--model", model, "--system-prompt", system_prompt(version),
                "--tools", "", "--setting-sources", "", "--strict-mcp-config", "--mcp-config", str(mcp_path),
-               "--allowedTools", ",".join(f"mcp__shop__{t}" for t in TOOL_NAMES[version]),
+               "--allowedTools", ",".join(f"mcp__shop__{t}" for t in TOOL_NAMES[tools]),
                "--output-format", "json", *(["--session-id", session] if i == 0 else ["--resume", session])]
         proc = subprocess.run(cmd, cwd=SANDBOX, capture_output=True, text=True, timeout=600, stdin=subprocess.DEVNULL,
                               env={**os.environ, "ENABLE_TOOL_SEARCH": "false"})
@@ -69,9 +85,11 @@ def run_mock(turns: list[str], version: str, model: str, db_path: str, workdir: 
     """Offline stand-in for a model: a naive agent that does whatever the customer asks and repeats
     whatever the tools return. It behaves the same with v1 and v2, so any difference between the two
     comes from the code guardrails alone. Used in CI; it says nothing about how a real model behaves."""
+    version = parts(version)[1]
     tools = VERSIONS[version](db_path)
     replies = []
     for msg in turns:
+        store.record_customer_message(db_path, msg)
         low = msg.lower()
         out = []
         ids = ORDER_ID.findall(msg)

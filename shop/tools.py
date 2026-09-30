@@ -4,16 +4,30 @@ v1 is "as shipped": the refund policy lives only in the prompt, and the tools do
 asks. v2 is "after the audit": the same policy is enforced in code, the customer's identity comes
 from the login session instead of the model, and free text from customers is labelled untrusted.
 """
+import functools
 import json
+import math
+import re
+import threading
 
 from . import store
 from .store import AUTO_REFUND_LIMIT, REFUND_WINDOW_DAYS
+
+
+def _one_at_a_time(fn):
+    """A model can ask for several tool calls at once. They share one database connection, so they queue."""
+    @functools.wraps(fn)
+    def wrapper(self, *args, **kwargs):
+        with self.lock:
+            return fn(self, *args, **kwargs)
+    return wrapper
 
 
 class _Base:
     def __init__(self, db_path: str, customer_id: str = store.SESSION_CUSTOMER):
         self.con = store.connect(db_path)
         self.customer_id = customer_id
+        self.lock = threading.RLock()
 
     def _log(self, tool: str, args: dict, result) -> str:
         text = result if isinstance(result, str) else json.dumps(result)
@@ -29,6 +43,7 @@ class _Base:
                              (row["id"], row["customer_id"]))
         return row
 
+    @_one_at_a_time
     def escalate(self, reason: str, order_id: str = "") -> str:
         """Hand the conversation to a human support agent. Use when a customer asks for a person,
         or when a request needs approval you cannot give."""
@@ -38,6 +53,7 @@ class _Base:
 
 
 class ToolsV1(_Base):
+    @_one_at_a_time
     def lookup_order(self, order_id: str) -> str:
         """Look up an order by its id."""
         row = self._order(order_id)
@@ -49,6 +65,7 @@ class ToolsV1(_Base):
             "customer_name": cust["name"], "customer_email": cust["email"], "shipping_address": cust["address"],
             "refunded_so_far": store.refunded_so_far(self.con, row["id"])})
 
+    @_one_at_a_time
     def list_orders(self, customer_email: str) -> str:
         """List the orders for a customer email address."""
         rows = self.con.execute(
@@ -59,6 +76,7 @@ class ToolsV1(_Base):
         return self._log("list_orders", {"customer_email": customer_email},
                          [{"id": r["id"], "item": r["item"], "total": r["total"], "status": r["status"]} for r in rows])
 
+    @_one_at_a_time
     def issue_refund(self, order_id: str, amount: float, reason: str) -> str:
         """Refund an amount to the customer for an order."""
         self.con.execute("INSERT INTO refunds (order_id, amount, reason) VALUES (?,?,?)",
@@ -75,6 +93,12 @@ class ToolsV2(_Base):
             return None
         return self._order(order_id)
 
+    def _named_by_customer(self, order_id: str) -> bool:
+        """Whether the customer typed this order id in the chat. Text the model reads anywhere else
+        (an order note, a tool result) doesn't count, so it can't talk the agent into a refund."""
+        named = re.compile(rf"(?<!\w){re.escape(order_id)}(?!\w)", re.I)
+        return any(named.search(r["text"]) for r in self.con.execute("SELECT text FROM customer_messages"))
+
     def _view(self, row) -> dict:
         done = store.refunded_so_far(self.con, row["id"])
         days = row["delivered_days_ago"]
@@ -88,6 +112,7 @@ class ToolsV2(_Base):
             "customer_note_UNTRUSTED": row["note"] or None,
         }
 
+    @_one_at_a_time
     def lookup_order(self, order_id: str) -> str:
         """Look up one of the logged-in customer's orders by its id. Returns refund eligibility too."""
         row = self._mine(order_id)
@@ -96,26 +121,43 @@ class ToolsV2(_Base):
                              {"error": "No order with that id on this customer's account."})
         return self._log("lookup_order", {"order_id": order_id}, self._view(row))
 
+    @_one_at_a_time
     def list_my_orders(self) -> str:
         """List all orders on the logged-in customer's account."""
         rows = self.con.execute("SELECT * FROM orders WHERE customer_id=?", (self.customer_id,)).fetchall()
         return self._log("list_my_orders", {}, [
             {"id": r["id"], "item": r["item"], "total": r["total"], "status": r["status"]} for r in rows])
 
+    @_one_at_a_time
     def issue_refund(self, order_id: str, amount: float, reason: str) -> str:
         """Refund part or all of one of the logged-in customer's orders. The tool enforces the refund
-        policy and returns an error explaining why if a refund is not allowed."""
+        policy and returns an error explaining why if a refund is not allowed. It only works on an
+        order the customer has named by its id in this chat."""
+        # Take the database's write lock before reading the balance, so a refund from another session
+        # can't land between the check and the insert. _log commits and releases it.
+        self.con.execute("BEGIN IMMEDIATE")
+        try:
+            return self._checked_refund(order_id, amount, reason)
+        except Exception:
+            self.con.rollback()
+            raise
+
+    def _checked_refund(self, order_id: str, amount: float, reason: str) -> str:
         args = {"order_id": order_id, "amount": amount, "reason": reason}
         row = self._mine(order_id)
         if not row:
             return self._log("issue_refund", args, {"error": "No order with that id on this customer's account."})
+        if not self._named_by_customer(row["id"]):
+            return self._log("issue_refund", args, {"error": (
+                f"The customer has not named order {row['id']} in this chat. Refunds are only issued on orders "
+                "the customer asks about by order id. Tell them which order you found and ask them to confirm its id.")})
         v = self._view(row)
         amount = round(float(amount), 2)
         err = None
         if not v["refund_eligible"]:
             err = f"Not refundable: {v['refund_eligibility_reason']}."
-        elif amount <= 0:
-            err = "Refund amount must be positive."
+        elif not math.isfinite(amount) or amount <= 0:  # NaN fails every comparison, so test for it by name
+            err = "Refund amount must be a positive number."
         elif amount > v["refundable_remaining"]:
             err = f"Amount exceeds what is left to refund on this order (${v['refundable_remaining']:.2f})."
         elif v["refunded_so_far"] + amount > AUTO_REFUND_LIMIT:
