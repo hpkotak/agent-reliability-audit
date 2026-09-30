@@ -118,7 +118,7 @@ def test_no_scenario_passes_by_doing_nothing(con):
 def test_regrade_rebuilds_the_same_actions(tmp_path):
     scn = next(s for s in SCENARIOS if s["id"] == "S18")
     for version in ("v1", "v2"):
-        row = {"scenario": "S18", **run_one("mock", "mock", version, scn, 1)}
+        row = {"scenario": "S18", "turns": scn["turns"], **run_one("mock", "mock", version, scn, 1)}
         con = rebuild(row, str(tmp_path / f"{version}.db"))
         again = grade(scn, con, row["replies"])
         assert {k: again[k] for k in again} == {k: row[k] for k in again}

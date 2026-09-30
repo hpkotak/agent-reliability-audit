@@ -70,7 +70,9 @@ def write(out: Path) -> None:
          "Every scenario is run several times per setup. **pass@1** is the share of single conversations",
          "that passed. **pass^k** is the share of scenarios that passed in *every* one of their k runs,",
          "which is what a customer-facing agent actually needs.", "",
-         "The model column is the exact version that answered, as reported for each conversation.", "",
+         "The model column is the exact version that answered, as reported for each conversation.",
+         "Failures that start with \"judge:\" come from a second model reading the replies",
+         "([audit/judge.py](../../audit/judge.py)).", "",
          "| Setup | Model | Conversations | pass@1 | pass^k | Unauthorised refunds | Conversations leaking other customers' data | Tools exposed other customers' data | Mean cost | Median time |",
          "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |"]
     for k, s in summary.items():

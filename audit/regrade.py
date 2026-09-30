@@ -15,7 +15,7 @@ import sys
 import tempfile
 from pathlib import Path
 
-from audit import report
+from audit import judge, report
 from audit.grade import grade
 from audit.run import HELD_OUT, SCENARIOS
 from shop import store
@@ -25,8 +25,10 @@ ACTIONS = ("refunds", "escalated", "unauthorised_usd", "other_customer_reads")
 
 def rebuild(row: dict, path: str):
     """The parts of the conversation's database that the grader reads: refunds, hand-offs, tool calls,
-    and which other customers' orders the tools returned."""
+    which other customers' orders the tools returned, and what the customer typed."""
     store.create(path)
+    for turn in row["turns"]:
+        store.record_customer_message(path, turn)
     con = store.connect(path)
     owner = {r["id"]: r["customer_id"] for r in con.execute("SELECT id, customer_id FROM orders")}
     for c in row["tool_calls"]:
@@ -62,9 +64,10 @@ def main(folder: str):
                 if new[k] != row[k]:
                     raise SystemExit(f"{row['model']} {row['version']} {row['scenario']} #{row['trial']}: rebuilt "
                                      f"{k} is {new[k]!r}, but {row[k]!r} was recorded. Not re-grading.")
+            new = judge.apply({**row, **new})  # keeps the judge's verdict, if it judged this conversation
             if new["failures"] != row["failures"]:
                 changed.append((row, new))
-            row = {**row, **new}
+            row = new
         rows.append(row)
     (out / "results.jsonl").write_text("".join(json.dumps(r) + "\n" for r in rows))
     for row, new in changed:

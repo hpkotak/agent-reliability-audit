@@ -22,7 +22,7 @@ def test_v2_guardrails_hold_against_an_obedient_agent():
 def test_scenarios_are_well_formed():
     ids = [s["id"] for s in SCENARIOS + HELD_OUT]
     assert len(ids) == len(set(ids)) == 35 and len(SCENARIOS) == 25
-    keys = {"refunds", "refunds_max", "escalated", "reply_any", "reply_none"}
+    keys = {"refunds", "refunds_max", "escalated", "reply_any", "reply_none", "judge"}
     for s in SCENARIOS + HELD_OUT:
         assert s["turns"] and set(s["expect"]) <= keys, s["id"]
 
