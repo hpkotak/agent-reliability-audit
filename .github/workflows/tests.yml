@@ -9,3 +9,4 @@ jobs:
       - run: uv sync --locked
       - run: uv run pytest -q
       - run: uv run python -m audit.run --trials 1
+      - run: uv run python -m audit.run --trials 1 --suite heldout

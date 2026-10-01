@@ -1,5 +1,6 @@
 """Turns results.jsonl into summary.json and REPORT.md."""
 import json
+import re
 from collections import Counter, defaultdict
 from pathlib import Path
 from statistics import median
@@ -15,6 +16,14 @@ def load(out: Path) -> list[dict]:
     return list(rows.values())
 
 
+def model_name(model_ids: list[str], alias: str) -> str:
+    """'Haiku 4.5' from 'claude-haiku-4-5-20251001'. An alias like 'haiku' moves to newer models over
+    time, so results are labelled with the version that actually answered."""
+    names = [f"{m[1].capitalize()} {m[2]}.{m[3]}" for m in
+             (re.fullmatch(r"claude-([a-z]+)-(\d+)-(\d+)(?:-\d{8})?", i) for i in model_ids) if m]
+    return " + ".join(names) or alias.capitalize()
+
+
 def summarise(rows: list[dict]) -> dict:
     groups = defaultdict(list)
     for r in rows:
@@ -25,13 +34,17 @@ def summarise(rows: list[dict]) -> dict:
         by_scn = defaultdict(list)
         for r in ok:
             by_scn[r["scenario"]].append(r["passed"])
+        k = max((len(v) for v in by_scn.values()), default=0)
+        every = [all(v) and len(v) == k for v in by_scn.values()]  # a scenario with runs missing hasn't passed them all
         costs = [r["cost_usd"] for r in ok]
+        ids = sorted({i for r in ok for i in r.get("model_ids", [])})
         summary[f"{model}/{version}"] = {
-            "model": model, "version": version, "conversations": len(ok), "errors": len(rs) - len(ok),
-            "trials_per_scenario": max((len(v) for v in by_scn.values()), default=0),
+            "model": model, "model_ids": ids, "model_name": model_name(ids, model), "version": version,
+            "conversations": len(ok), "errors": len(rs) - len(ok),
+            "trials_per_scenario": k,
             "pass_at_1": round(sum(r["passed"] for r in ok) / len(ok), 3) if ok else None,
-            "pass_all_k": round(sum(all(v) for v in by_scn.values()) / len(by_scn), 3) if by_scn else None,
-            "scenarios_always_pass": sum(all(v) for v in by_scn.values()),
+            "pass_all_k": round(sum(every) / len(by_scn), 3) if by_scn else None,
+            "scenarios_always_pass": sum(every),
             "scenarios_never_pass": sum(not any(v) for v in by_scn.values()),
             "scenarios": len(by_scn),
             "unauthorised_usd_total": round(sum(r["unauthorised_usd"] for r in ok), 2),
@@ -57,10 +70,14 @@ def write(out: Path) -> None:
          "Every scenario is run several times per setup. **pass@1** is the share of single conversations",
          "that passed. **pass^k** is the share of scenarios that passed in *every* one of their k runs,",
          "which is what a customer-facing agent actually needs.", "",
-         "| Setup | Conversations | pass@1 | pass^k | Unauthorised refunds | Conversations leaking other customers' data | Tools exposed other customers' data | Mean cost | Median time |",
-         "| --- | --- | --- | --- | --- | --- | --- | --- | --- |"]
+         "The model column is the exact version that answered, as reported for each conversation.",
+         "Failures that start with \"judge:\" come from a second model reading the replies",
+         "([audit/judge.py](../../audit/judge.py)).", "",
+         "| Setup | Model | Conversations | pass@1 | pass^k | Unauthorised refunds | Conversations leaking other customers' data | Tools exposed other customers' data | Mean cost | Median time |",
+         "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |"]
     for k, s in summary.items():
-        L.append(f"| {k} | {s['conversations']} ({s['errors']} errors) | {pct(s['pass_at_1'])} | "
+        ids = ", ".join(f"`{i}`" for i in s["model_ids"])
+        L.append(f"| {k} | {s['model_name']}{f' ({ids})' if ids else ''} | {s['conversations']} ({s['errors']} errors) | {pct(s['pass_at_1'])} | "
                  f"{pct(s['pass_all_k'])} (k={s['trials_per_scenario']}) | ${s['unauthorised_usd_total']:,.0f} in "
                  f"{s['conversations_with_unauthorised_refunds']} | {s['conversations_leaking_other_customers']} | "
                  f"{s['conversations_where_tools_exposed_other_customers']} | ${s['mean_cost_usd']:.3f} | {s['median_seconds']}s |")

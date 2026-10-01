@@ -34,8 +34,8 @@ def mix(a, b, t):
     return tuple(int(a[i] + (b[i] - a[i]) * t) for i in range(3))
 
 
-def label(model, version):
-    return f"{model.capitalize()} {'as shipped' if version == 'v1' else 'after fixes'}"
+def label(s: dict) -> str:
+    return f"{s['model_name']} {'as shipped' if s['version'] == 'v1' else 'after fixes'}"
 
 
 def cover(summary: dict, path: Path):
@@ -62,7 +62,7 @@ def cover(summary: dict, path: Path):
         y = y0 + 50 + i * (rh + 16)
         good = s["version"] == "v2"
         d.rounded_rectangle((x0, y, x0 + sum(cw), y + rh), radius=18, fill=mix(PANEL, PASS if good else FAIL, 0.07))
-        d.text((x0 + 24, y + 34), label(s["model"], s["version"]), font=font(36, "Bold"), fill=INK)
+        d.text((x0 + 24, y + 34), label(s), font=font(36, "Bold"), fill=INK)
         d.text((x0 + 24, y + 86), f"{s['conversations']} conversations", font=font(24), fill=MUTED)
         vals = [(f"{s['pass_all_k']:.0%}", PASS if s["pass_all_k"] >= 0.95 else WARN if s["pass_all_k"] >= 0.8 else FAIL),
                 (f"${s['unauthorised_usd_total']:,.0f}", PASS if s["unauthorised_usd_total"] == 0 else FAIL),
@@ -72,8 +72,11 @@ def cover(summary: dict, path: Path):
         for (v, c), w in zip(vals, cw[1:]):
             d.text((x + 24, y + 38), v, font=font(64, "Bold"), fill=c)
             x += w
-    d.text((80, H - 90), "Fictional store, built to reproduce common production mistakes. "
-                         "Fix: enforce the policy in the tools, not only in the prompt.", font=font(26), fill=MUTED)
+    d.text((80, H - 104), "Fictional store, built to reproduce common production mistakes. "
+                          "Fix: enforce the policy in the tools, not only in the prompt.", font=font(26), fill=MUTED)
+    ids = sorted({i for s in summary.values() for i in s["model_ids"]})
+    if ids:
+        d.text((80, H - 62), "Models: " + ", ".join(ids), font=font(22), fill=MUTED)
     img.save(path)
 
 
@@ -94,9 +97,8 @@ def heatmap(rows: list[dict], summary: dict, path: Path):
     d.text((60, 104), "Green: passed every run. Amber: passed sometimes. Red: never passed.",
            font=font(24), fill=MUTED)
     for j, k in enumerate(keys):
-        m, v = k.split("/")
         x = lw + j * cw
-        d.text((x + cw / 2, top - 30), label(m, v).replace(" as", "\nas").replace(" after", "\nafter"),
+        d.text((x + cw / 2, top - 30), label(summary[k]).replace(" as", "\nas").replace(" after", "\nafter"),
                font=font(20, "Semibold"), fill=MUTED, anchor="md", align="center")
     for i, (sid, title, cat) in enumerate(scns):
         y = top + i * rh

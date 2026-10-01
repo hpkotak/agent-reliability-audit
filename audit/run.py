@@ -4,9 +4,11 @@
     uv run python -m audit.run --backend claude-code --models haiku,opus --trials 5
 
 Results are appended to <out>/results.jsonl as each conversation finishes, so an interrupted run
-continues where it stopped when started again with the same --out.
+continues where it stopped when started again with the same --out. Saved conversations are only
+reused if they came from the same prompts, tools and scenarios; otherwise pass --fresh or a new --out.
 """
 import argparse
+import hashlib
 import json
 import subprocess
 import tempfile
@@ -18,11 +20,26 @@ from pathlib import Path
 import yaml
 
 from audit import report
-from audit.backends import BACKENDS, ROOT, TurnError, UsageLimit, redact
+from audit.backends import BACKENDS, ROOT, TurnError, UsageLimit, parts, redact, redact_json
 from audit.grade import grade
 from shop import store
+from shop.followup import open_missed_handoffs
 
 SCENARIOS = yaml.safe_load((ROOT / "audit" / "scenarios.yaml").read_text())
+# Written after the first version of the fixes was final. The hand-off changes came after its results.
+HELD_OUT = yaml.safe_load((ROOT / "audit" / "heldout.yaml").read_text())
+SUITES = {"main": SCENARIOS, "heldout": HELD_OUT}
+
+
+def suite_id(scenarios: list[dict]) -> str:
+    """Fingerprint of everything that decides how a conversation goes: prompts, tools, backends and the
+    customer's messages. The grader and the expected outcomes are left out, because saved conversations
+    can be graded again (audit.regrade)."""
+    h = hashlib.sha256()
+    for f in sorted([*(ROOT / "prompts").glob("*.md"), *(ROOT / "shop").glob("*.py"), ROOT / "audit" / "backends.py"]):
+        h.update(f.read_bytes())
+    h.update(json.dumps([[s["id"], s["turns"]] for s in scenarios]).encode())
+    return h.hexdigest()[:12]
 
 
 def run_one(backend: str, model: str, version: str, scn: dict, trial: int, attempts: int = 3) -> dict:
@@ -37,6 +54,8 @@ def run_one(backend: str, model: str, version: str, scn: dict, trial: int, attem
                     return {"error": redact(str(e))}
                 time.sleep(30 * attempt)  # usually a rate limit; start the conversation again on a fresh database
                 continue
+            if parts(version)[1] == "v2" and parts(version)[0] == "v2":  # the fixed chat application
+                open_missed_handoffs(db)
             con = store.connect(db)
             crash = con.execute("SELECT error FROM harness_errors").fetchone()
             if crash:
@@ -44,7 +63,7 @@ def run_one(backend: str, model: str, version: str, scn: dict, trial: int, attem
                 return {"error": "tool crashed: " + redact(crash[0][-500:])}
             replies = [redact(r) for r in out["replies"]]
             result = grade(scn, con, replies)
-            calls = [{"tool": r["tool"], "args": json.loads(r["args"]), "result": redact(r["result"])}
+            calls = [{"tool": r["tool"], "args": json.loads(redact_json(r["args"])), "result": redact_json(r["result"])}
                      for r in con.execute("SELECT * FROM tool_calls ORDER BY id")]
             con.close()
             return {**result, "replies": replies, "tool_calls": calls,
@@ -54,25 +73,39 @@ def run_one(backend: str, model: str, version: str, scn: dict, trial: int, attem
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--backend", default="mock", choices=BACKENDS)
-    ap.add_argument("--models", default="haiku", help="comma-separated Claude model aliases (ignored by mock)")
-    ap.add_argument("--versions", default="v1,v2")
+    ap.add_argument("--models", default="haiku", help="comma-separated Claude model aliases or full model ids (ignored by mock)")
+    ap.add_argument("--versions", default="v1,v2", help='comma-separated; "v2+v1" is the v2 prompt with the v1 tools')
+    ap.add_argument("--suite", default="main", choices=SUITES)
     ap.add_argument("--trials", type=int, default=5)
     ap.add_argument("--only", default="", help="comma-separated scenario ids")
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--out", default="")
+    ap.add_argument("--fresh", action="store_true", help="discard conversations already saved in --out and run them all")
     a = ap.parse_args()
 
     models = ["mock"] if a.backend == "mock" else a.models.split(",")
-    scenarios = [s for s in SCENARIOS if not a.only or s["id"] in a.only.split(",")]
-    out = Path(a.out or ROOT / "results" / a.backend)
+    scenarios = [s for s in SUITES[a.suite] if not a.only or s["id"] in a.only.split(",")]
+    out = Path(a.out or ROOT / "results" / (a.backend if a.suite == "main" else f"{a.backend}-{a.suite}"))
     out.mkdir(parents=True, exist_ok=True)
     path = out / "results.jsonl"
+    suite = suite_id(SUITES[a.suite])
+    if a.fresh or a.backend == "mock":  # the mock takes seconds, so it always starts over
+        path.unlink(missing_ok=True)
     done = set()
     if path.exists():
-        for line in path.read_text().splitlines():
-            r = json.loads(line)
-            if "error" not in r:
-                done.add((r["model"], r["version"], r["scenario"], r["trial"]))
+        lines = path.read_text().splitlines()
+        try:
+            json.loads(lines[-1]) if lines else None
+        except json.JSONDecodeError:  # the last write was cut off; that conversation runs again
+            lines = lines[:-1]
+            path.write_text("".join(line + "\n" for line in lines))
+        saved = [json.loads(line) for line in lines]
+        stale = sum(r.get("suite") != suite for r in saved)
+        if stale:
+            raise SystemExit(f"{path} holds {stale} conversations from a different version of the prompts, tools or "
+                             "scenarios, so this run can't continue from them. Pass --out <new folder> to keep them, "
+                             "or --fresh to replace them.")
+        done = {(r["model"], r["version"], r["scenario"], r["trial"]) for r in saved if "error" not in r}
 
     jobs = [(m, v, s, t) for m in models for v in a.versions.split(",") for s in scenarios
             for t in range(1, a.trials + 1) if (m, v, s["id"], t) not in done]
@@ -90,7 +123,7 @@ def main():
                     other.cancel()
                 break
             row = {"model": m, "version": v, "scenario": s["id"], "category": s["category"],
-                   "title": s["title"], "trial": t, "turns": s["turns"], **result}
+                   "title": s["title"], "trial": t, "turns": s["turns"], "suite": suite, **result}
             with lock:
                 f.write(json.dumps(row) + "\n")
                 f.flush()
