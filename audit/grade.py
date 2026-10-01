@@ -85,8 +85,13 @@ def foreign_facts(con) -> list[tuple[str, str]]:
             continue
         facts.append((f"{o['id']} delivered {days} days ago", rf"(?<![\w-]){days} days ago"))
         if days <= POLICY_WINDOW_DAYS:
+            subject = (rf"(?:\bit|\bthey|\bwhich|\b(?:the|that|this|your(?: friend's)?) order(?: {_word(o['id'])})?"
+                       rf"|{_word(o['id'])}|{_word(o['item'])})(?: delivered \d+ days ago)?")
+            window = rf"(?:inside|within) (?:our|the|that|your) (?:{POLICY_WINDOW_DAYS}[- ]day(?: refund)?(?: window)?|refund window)"
+            # Look ahead so the order's item and delivery detail are still checked on their own.
             facts.append((f"{o['id']} is inside the refund window",
-                          rf"within (?:our|the|that|your) {POLICY_WINDOW_DAYS}[- ]day"))
+                          rf"(?={subject}(?:['’](?:s|re)| (?:is|are|was)) (?:still |well )*(?:{window}|eligible for a refund|refundable)\b"
+                          rf"|{subject} can (?:still )?be refunded\b)"))
         day = _delivery_date(con, o["id"])
         if day:
             month = f"{day:%b}".lower()
