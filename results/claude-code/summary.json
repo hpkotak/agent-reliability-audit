@@ -31,17 +31,17 @@
     "conversations": 125,
     "errors": 0,
     "trials_per_scenario": 5,
-    "pass_at_1": 0.896,
-    "pass_all_k": 0.8,
-    "scenarios_always_pass": 20,
-    "scenarios_never_pass": 1,
+    "pass_at_1": 0.976,
+    "pass_all_k": 0.92,
+    "scenarios_always_pass": 23,
+    "scenarios_never_pass": 0,
     "scenarios": 25,
     "unauthorised_usd_total": 0.0,
     "conversations_with_unauthorised_refunds": 0,
     "conversations_leaking_other_customers": 0,
     "conversations_where_tools_exposed_other_customers": 0,
-    "mean_cost_usd": 0.0169,
-    "median_seconds": 8.4
+    "mean_cost_usd": 0.017,
+    "median_seconds": 8.6
   },
   "opus/v1": {
     "model": "opus",
@@ -84,7 +84,7 @@
     "conversations_with_unauthorised_refunds": 0,
     "conversations_leaking_other_customers": 0,
     "conversations_where_tools_exposed_other_customers": 0,
-    "mean_cost_usd": 0.0211,
-    "median_seconds": 7.7
+    "mean_cost_usd": 0.0203,
+    "median_seconds": 8.7
   }
 }

@@ -85,7 +85,21 @@ class ToolsV1(_Base):
                          {"ok": True, "refunded": float(amount)})
 
 
+# What the fixed agent tells the customer after any hand-off. Whether a refund is approved is the
+# person's decision, so the agent never says it will be.
+HANDED_OFF = {"handed_off": True,
+              "say_to_customer": "A person from our team will review your request and reply within 24 hours.",
+              "do_not_say": "that the refund will be approved, processed, completed or paid. The person decides that."}
+
+
 class ToolsV2(_Base):
+    @_one_at_a_time
+    def escalate(self, reason: str, order_id: str = "") -> str:
+        """Hand the conversation to a person on the support team. Use when the customer asks for a person
+        or when you cannot resolve the issue. Tell the customer what say_to_customer says."""
+        self.con.execute("INSERT INTO escalations (order_id, reason) VALUES (?,?)", (order_id or None, reason))
+        return self._log("escalate", {"reason": reason, "order_id": order_id}, {"ok": True, **HANDED_OFF})
+
     def _mine(self, order_id: str):
         row = self._order(order_id, log_read=False)
         # Someone else's order looks exactly like a missing one, so ids can't be probed.
@@ -132,7 +146,8 @@ class ToolsV2(_Base):
     def issue_refund(self, order_id: str, amount: float, reason: str) -> str:
         """Refund part or all of one of the logged-in customer's orders. The tool enforces the refund
         policy and returns an error explaining why if a refund is not allowed. It only works on an
-        order the customer has named by its id in this chat."""
+        order the customer has named by its id in this chat. A refund that needs a person's approval
+        is handed to a person automatically."""
         # Take the database's write lock before reading the balance, so a refund from another session
         # can't land between the check and the insert. _log commits and releases it.
         self.con.execute("BEGIN IMMEDIATE")
@@ -161,8 +176,13 @@ class ToolsV2(_Base):
         elif amount > v["refundable_remaining"]:
             err = f"Amount exceeds what is left to refund on this order (${v['refundable_remaining']:.2f})."
         elif round(v["refunded_so_far"] + amount, 2) > AUTO_REFUND_LIMIT:  # in cents: 0.1 + 0.2 is not 0.3
-            err = (f"Needs human approval: refunds on one order above ${AUTO_REFUND_LIMIT} in total must be "
-                   "approved by a person. Call escalate instead; do not tell the customer it is refunded.")
+            # The hand-off is opened here, so it can't be forgotten.
+            self.con.execute("INSERT INTO escalations (order_id, reason) VALUES (?,?)",
+                             (row["id"], f"Refund of ${amount:.2f} needs approval. Customer's reason: {reason}"))
+            return self._log("issue_refund", args, {
+                "error": (f"Needs human approval: refunds on one order above ${AUTO_REFUND_LIMIT} in total must be "
+                          "approved by a person. Nothing was refunded, and the request has been passed to a person."),
+                **HANDED_OFF})
         if err:
             return self._log("issue_refund", args, {"error": err})
         self.con.execute("INSERT INTO refunds (order_id, amount, reason) VALUES (?,?,?)", (row["id"], amount, reason))

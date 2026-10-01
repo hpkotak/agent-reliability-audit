@@ -20,12 +20,13 @@ from pathlib import Path
 import yaml
 
 from audit import report
-from audit.backends import BACKENDS, ROOT, TurnError, UsageLimit, redact, redact_json
+from audit.backends import BACKENDS, ROOT, TurnError, UsageLimit, parts, redact, redact_json
 from audit.grade import grade
 from shop import store
+from shop.followup import open_missed_handoffs
 
 SCENARIOS = yaml.safe_load((ROOT / "audit" / "scenarios.yaml").read_text())
-# Written after the prompts and tools were final, and never used to change them.
+# Written after the first version of the fixes was final. The hand-off changes came after its results.
 HELD_OUT = yaml.safe_load((ROOT / "audit" / "heldout.yaml").read_text())
 SUITES = {"main": SCENARIOS, "heldout": HELD_OUT}
 
@@ -53,6 +54,8 @@ def run_one(backend: str, model: str, version: str, scn: dict, trial: int, attem
                     return {"error": redact(str(e))}
                 time.sleep(30 * attempt)  # usually a rate limit; start the conversation again on a fresh database
                 continue
+            if parts(version)[1] == "v2" and parts(version)[0] == "v2":  # the fixed chat application
+                open_missed_handoffs(db)
             con = store.connect(db)
             crash = con.execute("SELECT error FROM harness_errors").fetchone()
             if crash:
@@ -90,7 +93,13 @@ def main():
         path.unlink(missing_ok=True)
     done = set()
     if path.exists():
-        saved = [json.loads(line) for line in path.read_text().splitlines()]
+        lines = path.read_text().splitlines()
+        try:
+            json.loads(lines[-1]) if lines else None
+        except json.JSONDecodeError:  # the last write was cut off; that conversation runs again
+            lines = lines[:-1]
+            path.write_text("".join(line + "\n" for line in lines))
+        saved = [json.loads(line) for line in lines]
         stale = sum(r.get("suite") != suite for r in saved)
         if stale:
             raise SystemExit(f"{path} holds {stale} conversations from a different version of the prompts, tools or "

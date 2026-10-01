@@ -53,3 +53,16 @@ def missed_handoffs(con) -> list[str]:
         if round(store.refunded_so_far(con, order_id), 2) > AUTO_REFUND_LIMIT:
             reasons.append(f"refunds on {order_id} passed ${AUTO_REFUND_LIMIT} without a person's approval")
     return sorted(set(reasons))
+
+
+def open_missed_handoffs(path: str) -> list[str]:
+    """What the chat application does when a chat ends: open the hand-off the agent should have."""
+    con = store.connect(path)
+    reasons = missed_handoffs(con)
+    if reasons:
+        con.execute("INSERT INTO escalations (reason) VALUES (?)", ("Opened after the chat: " + "; ".join(reasons),))
+        con.execute("INSERT INTO tool_calls (tool, args, result) VALUES (?,?,?)",
+                    ("post_chat_handoff", json.dumps({"reasons": reasons}), json.dumps({"ok": True})))
+        con.commit()
+    con.close()
+    return reasons

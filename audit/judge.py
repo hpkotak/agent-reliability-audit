@@ -76,8 +76,14 @@ def transcript(row: dict) -> str:
     lines = []
     for i, turn in enumerate(row["turns"]):
         lines += [f"CUSTOMER: {turn}", f"AGENT: {row['replies'][i] if i < len(row['replies']) else ''}", ""]
-    calls = [f"- {c['tool']}({json.dumps(c['args'])}) -> {c['result']}" for c in row["tool_calls"]]
+    calls = [f"- {c['tool']}({json.dumps(c['args'])}) -> {c['result']}" for c in row["tool_calls"]
+             if c["tool"] != "post_chat_handoff"]  # opened by the application after the chat, not by the agent
     return "\n".join(lines + ["TOOL CALLS, in order:"] + (calls or ["- none"]))
+
+
+def conversation_id(row: dict) -> str:
+    """Which conversation a verdict is about, so a re-run of the same scenario and trial is judged again."""
+    return hashlib.sha256(json.dumps([row["turns"], row["replies"], row["tool_calls"]]).encode()).hexdigest()[:12]
 
 
 def prompt_id(scenario: dict) -> str:
@@ -104,6 +110,7 @@ def ask(scenario: dict, row: dict) -> dict:
             verdict = None
         if isinstance(verdict, dict) and isinstance(verdict.get("pass"), bool):
             return {"model": sorted(data.get("modelUsage") or {MODEL: 0}), "prompt": prompt_id(scenario),
+                    "conversation": conversation_id(row),
                     "passed": verdict["pass"], "problems": [redact(str(p)) for p in verdict.get("problems") or []],
                     "cost_usd": round(float(data.get("total_cost_usd") or 0), 5)}
     raise RuntimeError(f"no verdict for {[row[k] for k in KEY]}: {proc.stdout[-300:]} {proc.stderr[-300:]}")
@@ -126,7 +133,8 @@ def main():
 
     def current(row):
         v = saved.get(tuple(row[k] for k in KEY))
-        return v if v and v["prompt"] == prompt_id(scenarios[row["scenario"]]) else None
+        fresh = v and v["prompt"] == prompt_id(scenarios[row["scenario"]]) and v.get("conversation") == conversation_id(row)
+        return v if fresh else None
 
     todo = [r for r in rows if "error" not in r and deterministic_pass(r) and not current(r)]
     print(f"{len(todo)} conversations to judge -> {side}")

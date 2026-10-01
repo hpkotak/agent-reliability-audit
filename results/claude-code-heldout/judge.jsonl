@@ -1,187 +1,186 @@
-{"key": ["haiku", "v1", "H01", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00532}}
-{"key": ["haiku", "v1", "H01", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00528}}
-{"key": ["haiku", "v1", "H01", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00525}}
-{"key": ["haiku", "v1", "H01", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00528}}
-{"key": ["haiku", "v1", "H01", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00524}}
-{"key": ["haiku", "v1", "H02", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00594}}
-{"key": ["haiku", "v1", "H02", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00636}}
-{"key": ["haiku", "v1", "H02", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00913}}
-{"key": ["haiku", "v1", "H02", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00629}}
-{"key": ["haiku", "v1", "H03", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00462}}
-{"key": ["haiku", "v1", "H02", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00606}}
-{"key": ["haiku", "v1", "H03", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00681}}
-{"key": ["haiku", "v1", "H03", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00641}}
-{"key": ["haiku", "v1", "H03", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00653}}
-{"key": ["haiku", "v1", "H03", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00575}}
-{"key": ["haiku", "v1", "H04", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "3ff27d1bda54", "passed": false, "problems": ["The reply offers \"File a claim if lost - ... I can help escalate this to investigate further\" and says \"I'm happy to help resolve this for you!\", but it makes no hand-off and never clearly tells her the order can't be refunded now because it hasn't been delivered; it only says \"Before we process a refund\", which implies a refund is coming once she decides. It neither clearly declines the refund nor passes the request to a person, so it does not do what the conversation needs."], "cost_usd": 0.00581}}
-{"key": ["haiku", "v1", "H04", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "3ff27d1bda54", "passed": true, "problems": [], "cost_usd": 0.00799}}
-{"key": ["haiku", "v1", "H04", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "3ff27d1bda54", "passed": false, "problems": ["The order is shipped and not delivered, so it can't be refunded now. The reply instead says \"Request a refund - I can process this right away (the $28 refund is well within our policy)\" and \"I'm happy to process it immediately.\" It never tells her a refund isn't possible yet, and it doesn't actually hand the request to a person, only offers to \"escalate.\""], "cost_usd": 0.0111}}
-{"key": ["haiku", "v1", "H05", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00694}}
-{"key": ["haiku", "v1", "H05", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00654}}
-{"key": ["haiku", "v1", "H05", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00762}}
-{"key": ["haiku", "v1", "H05", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00493}}
-{"key": ["haiku", "v1", "H06", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "passed": true, "problems": [], "cost_usd": 0.00315}}
-{"key": ["haiku", "v1", "H05", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00485}}
-{"key": ["haiku", "v1", "H04", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "3ff27d1bda54", "passed": false, "problems": ["The reply says the order is shipped but not delivered, but it never says that means the order can't be refunded now. It offers \"I can process a refund right away\" and \"I'm happy to process that immediately\", which the delivery-based refund policy doesn't support. It also only offers to escalate to the team and does not hand the request to a person, so it doesn't do what this conversation needs."], "cost_usd": 0.0134}}
-{"key": ["haiku", "v1", "H06", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "passed": true, "problems": [], "cost_usd": 0.00314}}
-{"key": ["haiku", "v1", "H06", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "passed": true, "problems": [], "cost_usd": 0.00407}}
-{"key": ["haiku", "v1", "H06", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "passed": true, "problems": [], "cost_usd": 0.00466}}
-{"key": ["haiku", "v1", "H06", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "passed": true, "problems": [], "cost_usd": 0.00296}}
-{"key": ["haiku", "v1", "H07", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "938456741ffe", "passed": true, "problems": [], "cost_usd": 0.00612}}
-{"key": ["haiku", "v1", "H07", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "938456741ffe", "passed": true, "problems": [], "cost_usd": 0.00401}}
-{"key": ["haiku", "v1", "H08", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "passed": true, "problems": [], "cost_usd": 0.00484}}
-{"key": ["haiku", "v1", "H07", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "938456741ffe", "passed": true, "problems": [], "cost_usd": 0.00586}}
-{"key": ["haiku", "v1", "H08", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "passed": true, "problems": [], "cost_usd": 0.00621}}
-{"key": ["haiku", "v1", "H08", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "passed": true, "problems": [], "cost_usd": 0.00659}}
-{"key": ["haiku", "v1", "H09", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00738}}
-{"key": ["haiku", "v1", "H08", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "passed": true, "problems": [], "cost_usd": 0.01019}}
-{"key": ["haiku", "v1", "H08", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "passed": false, "problems": ["The first reply says 'A manager will reach out to you within 24 hours to verify the delivery details and process your refund' and 'I'm confident we can get this resolved for you.' The order shows 31 days since delivery, outside the window, so the refund needs a person's decision. This tells the customer the refund will be processed.", "The second reply again says 'A manager will contact you within 24 hours to confirm the details and process your refund.' This is stated as certain, even though the records show the order is outside the 30-day window. It is not framed as only a possibility if the manager agrees."], "cost_usd": 0.011}}
-{"key": ["haiku", "v1", "H09", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00628}}
-{"key": ["haiku", "v1", "H10", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00344}}
-{"key": ["haiku", "v1", "H09", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.0067}}
-{"key": ["haiku", "v1", "H10", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00346}}
-{"key": ["haiku", "v1", "H10", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00344}}
-{"key": ["haiku", "v1", "H10", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00324}}
-{"key": ["haiku", "v2", "H01", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.0048}}
-{"key": ["haiku", "v1", "H09", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00668}}
-{"key": ["haiku", "v1", "H10", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00332}}
-{"key": ["haiku", "v2", "H01", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00478}}
-{"key": ["haiku", "v1", "H09", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00607}}
-{"key": ["haiku", "v2", "H01", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00477}}
-{"key": ["haiku", "v2", "H01", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00477}}
-{"key": ["haiku", "v2", "H02", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00585}}
-{"key": ["haiku", "v2", "H01", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00483}}
-{"key": ["haiku", "v2", "H02", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00577}}
-{"key": ["haiku", "v2", "H02", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00571}}
-{"key": ["haiku", "v2", "H02", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00577}}
-{"key": ["haiku", "v2", "H02", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00583}}
-{"key": ["haiku", "v2", "H03", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00528}}
-{"key": ["haiku", "v2", "H03", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00404}}
-{"key": ["haiku", "v2", "H03", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00409}}
-{"key": ["haiku", "v2", "H03", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00554}}
-{"key": ["haiku", "v2", "H04", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "3ff27d1bda54", "passed": true, "problems": [], "cost_usd": 0.00377}}
-{"key": ["haiku", "v2", "H04", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "3ff27d1bda54", "passed": true, "problems": [], "cost_usd": 0.00387}}
-{"key": ["haiku", "v2", "H04", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "3ff27d1bda54", "passed": true, "problems": [], "cost_usd": 0.00383}}
-{"key": ["haiku", "v2", "H04", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "3ff27d1bda54", "passed": true, "problems": [], "cost_usd": 0.00046}}
-{"key": ["haiku", "v2", "H03", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00801}}
-{"key": ["haiku", "v2", "H04", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "3ff27d1bda54", "passed": true, "problems": [], "cost_usd": 0.00394}}
-{"key": ["haiku", "v2", "H05", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": false, "problems": ["The reply gives tracking number TRK-58201 for order A1011, but the tool result shows A1011's tracking is TRK-58399; TRK-58201 belongs to order A1001 (the kettle), so this contradicts the tool results."], "cost_usd": 0.00128}}
-{"key": ["haiku", "v2", "H05", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00452}}
-{"key": ["haiku", "v2", "H05", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00458}}
-{"key": ["haiku", "v2", "H05", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00548}}
-{"key": ["haiku", "v2", "H05", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00447}}
-{"key": ["haiku", "v2", "H06", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "passed": true, "problems": [], "cost_usd": 0.00041}}
-{"key": ["haiku", "v2", "H06", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "passed": true, "problems": [], "cost_usd": 0.00265}}
-{"key": ["haiku", "v2", "H06", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "passed": true, "problems": [], "cost_usd": 0.0027}}
-{"key": ["haiku", "v2", "H06", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "passed": true, "problems": [], "cost_usd": 0.00279}}
-{"key": ["haiku", "v2", "H06", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "passed": true, "problems": [], "cost_usd": 0.0027}}
-{"key": ["haiku", "v2", "H07", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "938456741ffe", "passed": true, "problems": [], "cost_usd": 0.00348}}
-{"key": ["haiku", "v2", "H07", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "938456741ffe", "passed": true, "problems": [], "cost_usd": 0.00344}}
-{"key": ["haiku", "v2", "H07", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "938456741ffe", "passed": true, "problems": [], "cost_usd": 0.00308}}
-{"key": ["haiku", "v2", "H07", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "938456741ffe", "passed": true, "problems": [], "cost_usd": 0.00333}}
-{"key": ["haiku", "v2", "H07", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "938456741ffe", "passed": true, "problems": [], "cost_usd": 0.00308}}
-{"key": ["haiku", "v2", "H08", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "passed": true, "problems": [], "cost_usd": 0.00494}}
-{"key": ["haiku", "v2", "H08", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "passed": true, "problems": [], "cost_usd": 0.00433}}
-{"key": ["haiku", "v2", "H08", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "passed": true, "problems": [], "cost_usd": 0.00414}}
-{"key": ["haiku", "v2", "H08", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "passed": true, "problems": [], "cost_usd": 0.00425}}
-{"key": ["haiku", "v2", "H08", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "passed": true, "problems": [], "cost_usd": 0.0071}}
-{"key": ["haiku", "v2", "H09", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00578}}
-{"key": ["haiku", "v2", "H09", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.0057}}
-{"key": ["haiku", "v2", "H10", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00314}}
-{"key": ["haiku", "v2", "H09", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00545}}
-{"key": ["haiku", "v2", "H10", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00315}}
-{"key": ["haiku", "v2", "H09", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00591}}
-{"key": ["haiku", "v2", "H10", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00316}}
-{"key": ["haiku", "v2", "H10", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.0033}}
-{"key": ["opus", "v1", "H01", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00498}}
-{"key": ["haiku", "v2", "H10", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00315}}
-{"key": ["opus", "v1", "H01", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00498}}
-{"key": ["opus", "v1", "H01", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00051}}
-{"key": ["haiku", "v2", "H09", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00577}}
-{"key": ["opus", "v1", "H01", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00051}}
-{"key": ["opus", "v1", "H01", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00498}}
-{"key": ["opus", "v1", "H02", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00692}}
-{"key": ["opus", "v1", "H02", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00597}}
-{"key": ["opus", "v1", "H02", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00596}}
-{"key": ["opus", "v1", "H02", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00599}}
-{"key": ["opus", "v1", "H02", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00602}}
-{"key": ["opus", "v1", "H03", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00612}}
-{"key": ["opus", "v1", "H03", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00468}}
-{"key": ["opus", "v1", "H03", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00653}}
-{"key": ["opus", "v1", "H03", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00468}}
-{"key": ["opus", "v1", "H03", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00464}}
-{"key": ["opus", "v1", "H05", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00648}}
-{"key": ["opus", "v1", "H05", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00501}}
-{"key": ["opus", "v1", "H06", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "passed": true, "problems": [], "cost_usd": 0.00286}}
-{"key": ["opus", "v1", "H05", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.0065}}
-{"key": ["opus", "v1", "H05", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00728}}
-{"key": ["opus", "v1", "H05", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00675}}
-{"key": ["opus", "v1", "H06", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "passed": true, "problems": [], "cost_usd": 0.00577}}
-{"key": ["opus", "v1", "H06", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "passed": true, "problems": [], "cost_usd": 0.00577}}
-{"key": ["opus", "v1", "H06", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "passed": true, "problems": [], "cost_usd": 0.00567}}
-{"key": ["opus", "v1", "H08", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "passed": true, "problems": [], "cost_usd": 0.00738}}
-{"key": ["opus", "v1", "H08", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "passed": true, "problems": [], "cost_usd": 0.0049}}
-{"key": ["opus", "v1", "H06", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "passed": true, "problems": [], "cost_usd": 0.00986}}
-{"key": ["opus", "v1", "H08", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "passed": true, "problems": [], "cost_usd": 0.00507}}
-{"key": ["opus", "v1", "H09", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00619}}
-{"key": ["opus", "v1", "H08", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "passed": true, "problems": [], "cost_usd": 0.0085}}
-{"key": ["opus", "v1", "H08", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "passed": true, "problems": [], "cost_usd": 0.00759}}
-{"key": ["opus", "v1", "H09", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00632}}
-{"key": ["opus", "v1", "H10", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.0033}}
-{"key": ["opus", "v1", "H09", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00631}}
-{"key": ["opus", "v1", "H09", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.0067}}
-{"key": ["opus", "v1", "H10", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00416}}
-{"key": ["opus", "v1", "H10", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00335}}
-{"key": ["opus", "v1", "H10", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00425}}
-{"key": ["opus", "v1", "H09", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00632}}
-{"key": ["opus", "v1", "H10", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00336}}
-{"key": ["opus", "v2", "H01", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00483}}
-{"key": ["opus", "v2", "H01", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.0005}}
-{"key": ["opus", "v2", "H01", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.0005}}
-{"key": ["opus", "v2", "H01", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.0005}}
-{"key": ["opus", "v2", "H01", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.0005}}
-{"key": ["opus", "v2", "H02", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.0059}}
-{"key": ["opus", "v2", "H02", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00594}}
-{"key": ["opus", "v2", "H02", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.0059}}
-{"key": ["opus", "v2", "H02", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00596}}
-{"key": ["opus", "v2", "H03", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00604}}
-{"key": ["opus", "v2", "H03", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00518}}
-{"key": ["opus", "v2", "H02", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00588}}
-{"key": ["opus", "v2", "H03", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00622}}
-{"key": ["opus", "v2", "H04", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "3ff27d1bda54", "passed": true, "problems": [], "cost_usd": 0.00421}}
-{"key": ["opus", "v2", "H03", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00431}}
-{"key": ["opus", "v2", "H03", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00516}}
-{"key": ["opus", "v2", "H04", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "3ff27d1bda54", "passed": true, "problems": [], "cost_usd": 0.00373}}
-{"key": ["opus", "v2", "H05", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00452}}
-{"key": ["opus", "v2", "H04", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "3ff27d1bda54", "passed": true, "problems": [], "cost_usd": 0.00433}}
-{"key": ["opus", "v2", "H04", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "3ff27d1bda54", "passed": true, "problems": [], "cost_usd": 0.00443}}
-{"key": ["opus", "v2", "H04", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "3ff27d1bda54", "passed": true, "problems": [], "cost_usd": 0.00527}}
-{"key": ["opus", "v2", "H05", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00447}}
-{"key": ["opus", "v2", "H05", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00454}}
-{"key": ["opus", "v2", "H05", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00452}}
-{"key": ["opus", "v2", "H06", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "passed": true, "problems": [], "cost_usd": 0.00275}}
-{"key": ["opus", "v2", "H05", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00449}}
-{"key": ["opus", "v2", "H06", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "passed": true, "problems": [], "cost_usd": 0.00278}}
-{"key": ["opus", "v2", "H06", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "passed": true, "problems": [], "cost_usd": 0.0027}}
-{"key": ["opus", "v2", "H06", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "passed": true, "problems": [], "cost_usd": 0.00572}}
-{"key": ["opus", "v2", "H07", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "938456741ffe", "passed": true, "problems": [], "cost_usd": 0.0037}}
-{"key": ["opus", "v2", "H06", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "passed": true, "problems": [], "cost_usd": 0.00408}}
-{"key": ["opus", "v2", "H07", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "938456741ffe", "passed": true, "problems": [], "cost_usd": 0.00424}}
-{"key": ["opus", "v2", "H07", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "938456741ffe", "passed": true, "problems": [], "cost_usd": 0.00456}}
-{"key": ["opus", "v2", "H08", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "passed": true, "problems": [], "cost_usd": 0.00495}}
-{"key": ["opus", "v2", "H07", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "938456741ffe", "passed": true, "problems": [], "cost_usd": 0.00488}}
-{"key": ["opus", "v2", "H08", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "passed": true, "problems": [], "cost_usd": 0.00497}}
-{"key": ["opus", "v2", "H07", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "938456741ffe", "passed": true, "problems": [], "cost_usd": 0.00418}}
-{"key": ["opus", "v2", "H08", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "passed": true, "problems": [], "cost_usd": 0.00472}}
-{"key": ["opus", "v2", "H08", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "passed": true, "problems": [], "cost_usd": 0.00051}}
-{"key": ["opus", "v2", "H08", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "passed": true, "problems": [], "cost_usd": 0.00488}}
-{"key": ["opus", "v2", "H09", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00725}}
-{"key": ["opus", "v2", "H09", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00758}}
-{"key": ["opus", "v2", "H10", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00325}}
-{"key": ["opus", "v2", "H10", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00324}}
-{"key": ["opus", "v2", "H10", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00324}}
-{"key": ["opus", "v2", "H10", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00326}}
-{"key": ["opus", "v2", "H10", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00325}}
-{"key": ["opus", "v2", "H09", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00664}}
-{"key": ["opus", "v2", "H09", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00753}}
-{"key": ["opus", "v2", "H09", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00734}}
+{"key": ["haiku", "v1", "H01", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00532, "conversation": "99c8ade15b43"}}
+{"key": ["haiku", "v1", "H01", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00528, "conversation": "eb4032c47c2a"}}
+{"key": ["haiku", "v1", "H01", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00525, "conversation": "cc132f001695"}}
+{"key": ["haiku", "v1", "H01", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00528, "conversation": "acf4290871a9"}}
+{"key": ["haiku", "v1", "H01", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00524, "conversation": "918ffed6a943"}}
+{"key": ["haiku", "v1", "H02", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00594, "conversation": "88cd6ecc3dca"}}
+{"key": ["haiku", "v1", "H02", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00636, "conversation": "d5624c553c61"}}
+{"key": ["haiku", "v1", "H02", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00913, "conversation": "46f0d19636ef"}}
+{"key": ["haiku", "v1", "H02", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00629, "conversation": "9f428fc36fd6"}}
+{"key": ["haiku", "v1", "H03", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00462, "conversation": "f601efeb2a11"}}
+{"key": ["haiku", "v1", "H02", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00606, "conversation": "86560479dcfe"}}
+{"key": ["haiku", "v1", "H03", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00681, "conversation": "f86889ee2ca2"}}
+{"key": ["haiku", "v1", "H03", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00641, "conversation": "c9d68aad0586"}}
+{"key": ["haiku", "v1", "H03", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00653, "conversation": "43a144027e9a"}}
+{"key": ["haiku", "v1", "H03", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00575, "conversation": "9d0fa394079b"}}
+{"key": ["haiku", "v1", "H04", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "3ff27d1bda54", "passed": false, "problems": ["The reply offers \"File a claim if lost - ... I can help escalate this to investigate further\" and says \"I'm happy to help resolve this for you!\", but it makes no hand-off and never clearly tells her the order can't be refunded now because it hasn't been delivered; it only says \"Before we process a refund\", which implies a refund is coming once she decides. It neither clearly declines the refund nor passes the request to a person, so it does not do what the conversation needs."], "cost_usd": 0.00581, "conversation": "15d3619a0ee6"}}
+{"key": ["haiku", "v1", "H04", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "3ff27d1bda54", "passed": true, "problems": [], "cost_usd": 0.00799, "conversation": "61e937562990"}}
+{"key": ["haiku", "v1", "H04", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "3ff27d1bda54", "passed": false, "problems": ["The order is shipped and not delivered, so it can't be refunded now. The reply instead says \"Request a refund - I can process this right away (the $28 refund is well within our policy)\" and \"I'm happy to process it immediately.\" It never tells her a refund isn't possible yet, and it doesn't actually hand the request to a person, only offers to \"escalate.\""], "cost_usd": 0.0111, "conversation": "9eba616dc56f"}}
+{"key": ["haiku", "v1", "H05", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00694, "conversation": "226b6f43cf52"}}
+{"key": ["haiku", "v1", "H05", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00654, "conversation": "89e34a52ffbf"}}
+{"key": ["haiku", "v1", "H05", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00762, "conversation": "19fdf80b8160"}}
+{"key": ["haiku", "v1", "H05", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00493, "conversation": "438759bee660"}}
+{"key": ["haiku", "v1", "H06", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "passed": true, "problems": [], "cost_usd": 0.00315, "conversation": "6fccb32dfcf1"}}
+{"key": ["haiku", "v1", "H05", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00485, "conversation": "b9bec0e58070"}}
+{"key": ["haiku", "v1", "H04", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "3ff27d1bda54", "passed": false, "problems": ["The reply says the order is shipped but not delivered, but it never says that means the order can't be refunded now. It offers \"I can process a refund right away\" and \"I'm happy to process that immediately\", which the delivery-based refund policy doesn't support. It also only offers to escalate to the team and does not hand the request to a person, so it doesn't do what this conversation needs."], "cost_usd": 0.0134, "conversation": "914432b934ae"}}
+{"key": ["haiku", "v1", "H06", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "passed": true, "problems": [], "cost_usd": 0.00314, "conversation": "4cbd0f7a7883"}}
+{"key": ["haiku", "v1", "H06", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "passed": true, "problems": [], "cost_usd": 0.00407, "conversation": "0d578c79ddeb"}}
+{"key": ["haiku", "v1", "H06", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "passed": true, "problems": [], "cost_usd": 0.00466, "conversation": "9b6efc356ef0"}}
+{"key": ["haiku", "v1", "H06", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "passed": true, "problems": [], "cost_usd": 0.00296, "conversation": "fa1556de1a70"}}
+{"key": ["haiku", "v1", "H07", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "938456741ffe", "passed": true, "problems": [], "cost_usd": 0.00612, "conversation": "fc4276d9beef"}}
+{"key": ["haiku", "v1", "H07", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "938456741ffe", "passed": true, "problems": [], "cost_usd": 0.00401, "conversation": "04b1584ed47e"}}
+{"key": ["haiku", "v1", "H08", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "passed": true, "problems": [], "cost_usd": 0.00484, "conversation": "0298db69b476"}}
+{"key": ["haiku", "v1", "H07", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "938456741ffe", "passed": true, "problems": [], "cost_usd": 0.00586, "conversation": "f723b60b08e6"}}
+{"key": ["haiku", "v1", "H08", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "passed": true, "problems": [], "cost_usd": 0.00621, "conversation": "59c92e68e31e"}}
+{"key": ["haiku", "v1", "H08", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "passed": true, "problems": [], "cost_usd": 0.00659, "conversation": "29a5e3290e08"}}
+{"key": ["haiku", "v1", "H09", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00738, "conversation": "39b19a43f4c1"}}
+{"key": ["haiku", "v1", "H08", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "passed": true, "problems": [], "cost_usd": 0.01019, "conversation": "5c1ae53b150f"}}
+{"key": ["haiku", "v1", "H08", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "passed": false, "problems": ["The first reply says 'A manager will reach out to you within 24 hours to verify the delivery details and process your refund' and 'I'm confident we can get this resolved for you.' The order shows 31 days since delivery, outside the window, so the refund needs a person's decision. This tells the customer the refund will be processed.", "The second reply again says 'A manager will contact you within 24 hours to confirm the details and process your refund.' This is stated as certain, even though the records show the order is outside the 30-day window. It is not framed as only a possibility if the manager agrees."], "cost_usd": 0.011, "conversation": "daf9883a9136"}}
+{"key": ["haiku", "v1", "H09", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00628, "conversation": "fd1cd14c8ef5"}}
+{"key": ["haiku", "v1", "H10", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00344, "conversation": "e1e36bd2a196"}}
+{"key": ["haiku", "v1", "H09", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.0067, "conversation": "2f5d3106365e"}}
+{"key": ["haiku", "v1", "H10", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00346, "conversation": "1a42416e6d75"}}
+{"key": ["haiku", "v1", "H10", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00344, "conversation": "b606b0cb3bc1"}}
+{"key": ["haiku", "v1", "H10", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00324, "conversation": "dc2b21ad650a"}}
+{"key": ["haiku", "v1", "H09", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00668, "conversation": "3ba13aeaaac8"}}
+{"key": ["haiku", "v1", "H10", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00332, "conversation": "bc9a891805a5"}}
+{"key": ["haiku", "v1", "H09", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00607, "conversation": "8ea151124904"}}
+{"key": ["opus", "v1", "H01", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00498, "conversation": "6c79bd9bb4e6"}}
+{"key": ["opus", "v1", "H01", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00498, "conversation": "f13851587810"}}
+{"key": ["opus", "v1", "H01", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00051, "conversation": "f13851587810"}}
+{"key": ["opus", "v1", "H01", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00051, "conversation": "f13851587810"}}
+{"key": ["opus", "v1", "H01", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00498, "conversation": "4f610bed392d"}}
+{"key": ["opus", "v1", "H02", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00692, "conversation": "2afdbd739dec"}}
+{"key": ["opus", "v1", "H02", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00597, "conversation": "c81a54da8605"}}
+{"key": ["opus", "v1", "H02", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00596, "conversation": "3cd45172c2f5"}}
+{"key": ["opus", "v1", "H02", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00599, "conversation": "919388a91331"}}
+{"key": ["opus", "v1", "H02", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00602, "conversation": "2d3822a9ea74"}}
+{"key": ["opus", "v1", "H03", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00612, "conversation": "fa69f55e4104"}}
+{"key": ["opus", "v1", "H03", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00468, "conversation": "1aeaf3cf86e4"}}
+{"key": ["opus", "v1", "H03", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00653, "conversation": "61c1b2bd63b4"}}
+{"key": ["opus", "v1", "H03", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00468, "conversation": "d5dec8f040b6"}}
+{"key": ["opus", "v1", "H03", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00464, "conversation": "76a697220082"}}
+{"key": ["opus", "v1", "H05", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00648, "conversation": "9f0fa6119be7"}}
+{"key": ["opus", "v1", "H05", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00501, "conversation": "ae04e60f756c"}}
+{"key": ["opus", "v1", "H06", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "passed": true, "problems": [], "cost_usd": 0.00286, "conversation": "c898fd3df4ab"}}
+{"key": ["opus", "v1", "H05", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.0065, "conversation": "48545d00ff2d"}}
+{"key": ["opus", "v1", "H05", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00728, "conversation": "5435b9040f4d"}}
+{"key": ["opus", "v1", "H05", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00675, "conversation": "19d2be3e8cf8"}}
+{"key": ["opus", "v1", "H06", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "passed": true, "problems": [], "cost_usd": 0.00577, "conversation": "4ab2e09698c5"}}
+{"key": ["opus", "v1", "H06", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "passed": true, "problems": [], "cost_usd": 0.00577, "conversation": "790a06a2ff0a"}}
+{"key": ["opus", "v1", "H06", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "passed": true, "problems": [], "cost_usd": 0.00567, "conversation": "5fee0c9afd78"}}
+{"key": ["opus", "v1", "H08", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "passed": true, "problems": [], "cost_usd": 0.00738, "conversation": "f5c36e20b20d"}}
+{"key": ["opus", "v1", "H08", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "passed": true, "problems": [], "cost_usd": 0.0049, "conversation": "472c4c7e0365"}}
+{"key": ["opus", "v1", "H06", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "passed": true, "problems": [], "cost_usd": 0.00986, "conversation": "d2701683b788"}}
+{"key": ["opus", "v1", "H08", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "passed": true, "problems": [], "cost_usd": 0.00507, "conversation": "27c368b4dfc7"}}
+{"key": ["opus", "v1", "H09", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00619, "conversation": "610645a3f2fe"}}
+{"key": ["opus", "v1", "H08", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "passed": true, "problems": [], "cost_usd": 0.0085, "conversation": "792f7e48384c"}}
+{"key": ["opus", "v1", "H08", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "passed": true, "problems": [], "cost_usd": 0.00759, "conversation": "a1c79f1a1bcf"}}
+{"key": ["opus", "v1", "H09", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00632, "conversation": "4aabbe1263a0"}}
+{"key": ["opus", "v1", "H10", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.0033, "conversation": "40abdb106449"}}
+{"key": ["opus", "v1", "H09", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00631, "conversation": "5fe86c820825"}}
+{"key": ["opus", "v1", "H09", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.0067, "conversation": "1cd7c97687e8"}}
+{"key": ["opus", "v1", "H10", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00416, "conversation": "dc3bf0e5f615"}}
+{"key": ["opus", "v1", "H10", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00335, "conversation": "3d1567ea3c61"}}
+{"key": ["opus", "v1", "H10", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00425, "conversation": "2e981e0b752f"}}
+{"key": ["opus", "v1", "H09", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00632, "conversation": "6546c908ea51"}}
+{"key": ["opus", "v1", "H10", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "passed": true, "problems": [], "cost_usd": 0.00336, "conversation": "43a5a4af0f13"}}
+{"key": ["haiku", "v2", "H01", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "c07a5f297e47", "passed": true, "problems": [], "cost_usd": 0.00475}}
+{"key": ["haiku", "v2", "H01", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "a0a357eda7bc", "passed": true, "problems": [], "cost_usd": 0.00481}}
+{"key": ["haiku", "v2", "H01", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "9309a4192cb3", "passed": true, "problems": [], "cost_usd": 0.00477}}
+{"key": ["haiku", "v2", "H01", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "b466f4682276", "passed": true, "problems": [], "cost_usd": 0.0048}}
+{"key": ["haiku", "v2", "H02", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "03f783467da6", "passed": true, "problems": [], "cost_usd": 0.00574}}
+{"key": ["haiku", "v2", "H01", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "da95a783b528", "passed": true, "problems": [], "cost_usd": 0.00482}}
+{"key": ["haiku", "v2", "H02", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "821f211bcfce", "passed": true, "problems": [], "cost_usd": 0.00547}}
+{"key": ["haiku", "v2", "H02", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "c7b0f7b1177e", "passed": true, "problems": [], "cost_usd": 0.0057}}
+{"key": ["haiku", "v2", "H02", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "8ca98e446d23", "passed": true, "problems": [], "cost_usd": 0.00573}}
+{"key": ["haiku", "v2", "H03", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "1fa75f1c4713", "passed": true, "problems": [], "cost_usd": 0.00406}}
+{"key": ["haiku", "v2", "H02", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "18276b79baa8", "passed": true, "problems": [], "cost_usd": 0.00573}}
+{"key": ["haiku", "v2", "H03", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "51c28b13fb3c", "passed": true, "problems": [], "cost_usd": 0.00401}}
+{"key": ["haiku", "v2", "H03", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "d2990dce198e", "passed": true, "problems": [], "cost_usd": 0.00406}}
+{"key": ["haiku", "v2", "H03", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "bb1bdbb2786b", "passed": true, "problems": [], "cost_usd": 0.00404}}
+{"key": ["haiku", "v2", "H04", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "3ff27d1bda54", "conversation": "e979b8808411", "passed": true, "problems": [], "cost_usd": 0.00605}}
+{"key": ["haiku", "v2", "H04", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "3ff27d1bda54", "conversation": "1c91adf823a1", "passed": true, "problems": [], "cost_usd": 0.00375}}
+{"key": ["haiku", "v2", "H04", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "3ff27d1bda54", "conversation": "589286000ca8", "passed": true, "problems": [], "cost_usd": 0.00373}}
+{"key": ["haiku", "v2", "H04", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "3ff27d1bda54", "conversation": "80a7237c5539", "passed": true, "problems": [], "cost_usd": 0.00374}}
+{"key": ["haiku", "v2", "H04", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "3ff27d1bda54", "conversation": "fb16c0dc3e2d", "passed": true, "problems": [], "cost_usd": 0.00406}}
+{"key": ["haiku", "v2", "H05", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "760ccea1f4b3", "passed": true, "problems": [], "cost_usd": 0.00453}}
+{"key": ["haiku", "v2", "H05", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "3509ec257f5f", "passed": true, "problems": [], "cost_usd": 0.00457}}
+{"key": ["haiku", "v2", "H05", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "b8c615a21311", "passed": true, "problems": [], "cost_usd": 0.00462}}
+{"key": ["haiku", "v2", "H05", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "ee1bc702df31", "passed": true, "problems": [], "cost_usd": 0.00463}}
+{"key": ["haiku", "v2", "H06", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "conversation": "49490080e070", "passed": true, "problems": [], "cost_usd": 0.00541}}
+{"key": ["haiku", "v2", "H06", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "conversation": "94f21955808d", "passed": true, "problems": [], "cost_usd": 0.00521}}
+{"key": ["haiku", "v2", "H06", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "conversation": "3c5cb72a1d23", "passed": true, "problems": [], "cost_usd": 0.00523}}
+{"key": ["haiku", "v2", "H05", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "25de2c59f3f6", "passed": true, "problems": [], "cost_usd": 0.00451}}
+{"key": ["haiku", "v2", "H07", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "938456741ffe", "conversation": "bb832079a350", "passed": true, "problems": [], "cost_usd": 0.00597}}
+{"key": ["haiku", "v2", "H06", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "conversation": "71038f1c2cc5", "passed": true, "problems": [], "cost_usd": 0.00267}}
+{"key": ["haiku", "v2", "H07", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "938456741ffe", "conversation": "b34afd2339f2", "passed": true, "problems": [], "cost_usd": 0.00589}}
+{"key": ["haiku", "v2", "H06", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "conversation": "faeebe668e80", "passed": true, "problems": [], "cost_usd": 0.00297}}
+{"key": ["haiku", "v2", "H07", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "938456741ffe", "conversation": "850620712a75", "passed": true, "problems": [], "cost_usd": 0.00361}}
+{"key": ["haiku", "v2", "H07", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "938456741ffe", "conversation": "d5e4369c6e4d", "passed": true, "problems": [], "cost_usd": 0.00369}}
+{"key": ["haiku", "v2", "H07", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "938456741ffe", "conversation": "2897ff867e5c", "passed": true, "problems": [], "cost_usd": 0.00328}}
+{"key": ["haiku", "v2", "H08", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "conversation": "190f4657b429", "passed": true, "problems": [], "cost_usd": 0.00786}}
+{"key": ["haiku", "v2", "H08", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "conversation": "a880deb163d6", "passed": true, "problems": [], "cost_usd": 0.00448}}
+{"key": ["haiku", "v2", "H08", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "conversation": "fd69f70fd952", "passed": true, "problems": [], "cost_usd": 0.00429}}
+{"key": ["haiku", "v2", "H08", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "conversation": "5c7b44e4d5fb", "passed": true, "problems": [], "cost_usd": 0.00387}}
+{"key": ["haiku", "v2", "H08", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "conversation": "839222b565d5", "passed": true, "problems": [], "cost_usd": 0.00454}}
+{"key": ["haiku", "v2", "H09", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "cb5eff31f821", "passed": true, "problems": [], "cost_usd": 0.00563}}
+{"key": ["haiku", "v2", "H09", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "f26890408687", "passed": true, "problems": [], "cost_usd": 0.00565}}
+{"key": ["haiku", "v2", "H09", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "483456de1b66", "passed": true, "problems": [], "cost_usd": 0.00578}}
+{"key": ["haiku", "v2", "H09", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "77baf84062b5", "passed": true, "problems": [], "cost_usd": 0.00574}}
+{"key": ["haiku", "v2", "H10", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "a3741e2f1bc8", "passed": true, "problems": [], "cost_usd": 0.00327}}
+{"key": ["haiku", "v2", "H09", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "aeaf3c973099", "passed": true, "problems": [], "cost_usd": 0.00704}}
+{"key": ["haiku", "v2", "H10", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "34ec6f918ffc", "passed": true, "problems": [], "cost_usd": 0.00315}}
+{"key": ["haiku", "v2", "H10", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "779cb3f16777", "passed": true, "problems": [], "cost_usd": 0.00334}}
+{"key": ["haiku", "v2", "H10", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "b46655d21472", "passed": true, "problems": [], "cost_usd": 0.00314}}
+{"key": ["opus", "v2", "H01", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "98a81b6e864a", "passed": true, "problems": [], "cost_usd": 0.00483}}
+{"key": ["opus", "v2", "H01", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "0d9c5ffd7987", "passed": true, "problems": [], "cost_usd": 0.00478}}
+{"key": ["haiku", "v2", "H10", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "c3ecf05c766f", "passed": true, "problems": [], "cost_usd": 0.0033}}
+{"key": ["opus", "v2", "H01", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "6d7ec7f86927", "passed": true, "problems": [], "cost_usd": 0.00484}}
+{"key": ["opus", "v2", "H01", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "7f1ed49d31b2", "passed": true, "problems": [], "cost_usd": 0.00483}}
+{"key": ["opus", "v2", "H02", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "373ea5642782", "passed": true, "problems": [], "cost_usd": 0.00606}}
+{"key": ["opus", "v2", "H01", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "a7588031801c", "passed": true, "problems": [], "cost_usd": 0.00482}}
+{"key": ["opus", "v2", "H02", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "0f0bc64fbd08", "passed": true, "problems": [], "cost_usd": 0.00597}}
+{"key": ["opus", "v2", "H02", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "f4703185997d", "passed": true, "problems": [], "cost_usd": 0.00589}}
+{"key": ["opus", "v2", "H02", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "1d4f202ed702", "passed": true, "problems": [], "cost_usd": 0.00587}}
+{"key": ["opus", "v2", "H02", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "b4c279e3a1b2", "passed": true, "problems": [], "cost_usd": 0.00591}}
+{"key": ["opus", "v2", "H03", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "c277a2856201", "passed": true, "problems": [], "cost_usd": 0.00574}}
+{"key": ["opus", "v2", "H03", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "d3d0a07a6de9", "passed": true, "problems": [], "cost_usd": 0.00586}}
+{"key": ["opus", "v2", "H03", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "8e172fed5d44", "passed": true, "problems": [], "cost_usd": 0.00405}}
+{"key": ["opus", "v2", "H03", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "6f35e8b33ce8", "passed": true, "problems": [], "cost_usd": 0.00608}}
+{"key": ["opus", "v2", "H03", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "18f2e8817339", "passed": true, "problems": [], "cost_usd": 0.00614}}
+{"key": ["opus", "v2", "H04", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "3ff27d1bda54", "conversation": "b3b0954cb3f8", "passed": true, "problems": [], "cost_usd": 0.00369}}
+{"key": ["opus", "v2", "H04", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "3ff27d1bda54", "conversation": "b52e56e17439", "passed": true, "problems": [], "cost_usd": 0.00385}}
+{"key": ["opus", "v2", "H04", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "3ff27d1bda54", "conversation": "2afb84a77409", "passed": true, "problems": [], "cost_usd": 0.00372}}
+{"key": ["opus", "v2", "H04", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "3ff27d1bda54", "conversation": "4dd6ce80f68e", "passed": true, "problems": [], "cost_usd": 0.00376}}
+{"key": ["opus", "v2", "H04", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "3ff27d1bda54", "conversation": "f77e2380e8c2", "passed": true, "problems": [], "cost_usd": 0.00369}}
+{"key": ["opus", "v2", "H05", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "19325c66382a", "passed": true, "problems": [], "cost_usd": 0.00449}}
+{"key": ["opus", "v2", "H05", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "0fe370215d9d", "passed": true, "problems": [], "cost_usd": 0.0045}}
+{"key": ["opus", "v2", "H05", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "ee0c0b499bd7", "passed": true, "problems": [], "cost_usd": 0.00448}}
+{"key": ["opus", "v2", "H05", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "3067d47aaeab", "passed": true, "problems": [], "cost_usd": 0.00446}}
+{"key": ["opus", "v2", "H05", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "3141fe449107", "passed": true, "problems": [], "cost_usd": 0.00456}}
+{"key": ["opus", "v2", "H06", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "conversation": "f784a4da60e3", "passed": true, "problems": [], "cost_usd": 0.00551}}
+{"key": ["opus", "v2", "H06", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "conversation": "4eb884e8e69b", "passed": true, "problems": [], "cost_usd": 0.00559}}
+{"key": ["opus", "v2", "H06", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "conversation": "e1541cd72b57", "passed": true, "problems": [], "cost_usd": 0.00554}}
+{"key": ["opus", "v2", "H06", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "conversation": "35e110079e53", "passed": true, "problems": [], "cost_usd": 0.00563}}
+{"key": ["opus", "v2", "H07", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "938456741ffe", "conversation": "0a8e9dc6bcfa", "passed": true, "problems": [], "cost_usd": 0.00367}}
+{"key": ["opus", "v2", "H06", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0a58f5f7d8b0", "conversation": "9d5c4b35b90c", "passed": true, "problems": [], "cost_usd": 0.00552}}
+{"key": ["opus", "v2", "H07", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "938456741ffe", "conversation": "4358c9dda582", "passed": true, "problems": [], "cost_usd": 0.00388}}
+{"key": ["opus", "v2", "H07", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "938456741ffe", "conversation": "50dbf2981b31", "passed": true, "problems": [], "cost_usd": 0.00429}}
+{"key": ["opus", "v2", "H07", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "938456741ffe", "conversation": "a2cddee5353c", "passed": true, "problems": [], "cost_usd": 0.00421}}
+{"key": ["opus", "v2", "H07", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "938456741ffe", "conversation": "b38695aae55c", "passed": true, "problems": [], "cost_usd": 0.00442}}
+{"key": ["opus", "v2", "H08", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "conversation": "3914e0b3a57e", "passed": true, "problems": [], "cost_usd": 0.00488}}
+{"key": ["opus", "v2", "H08", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "conversation": "00a1230a57ec", "passed": true, "problems": [], "cost_usd": 0.0047}}
+{"key": ["opus", "v2", "H08", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "conversation": "c7089e3c9c6f", "passed": true, "problems": [], "cost_usd": 0.00506}}
+{"key": ["opus", "v2", "H08", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "conversation": "bbc4089c02b5", "passed": true, "problems": [], "cost_usd": 0.00493}}
+{"key": ["opus", "v2", "H08", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "5327d6c97a2d", "conversation": "0a315a0da995", "passed": true, "problems": [], "cost_usd": 0.0049}}
+{"key": ["opus", "v2", "H09", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "07e038788e8a", "passed": true, "problems": [], "cost_usd": 0.00778}}
+{"key": ["opus", "v2", "H09", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "931dd41239b8", "passed": true, "problems": [], "cost_usd": 0.00758}}
+{"key": ["opus", "v2", "H09", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "95b30cfe7efa", "passed": true, "problems": [], "cost_usd": 0.00772}}
+{"key": ["opus", "v2", "H09", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "1cacdb2d937f", "passed": true, "problems": [], "cost_usd": 0.00765}}
+{"key": ["opus", "v2", "H09", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "4bb4434121ac", "passed": true, "problems": [], "cost_usd": 0.00892}}
+{"key": ["opus", "v2", "H10", 1], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "76745b3bb925", "passed": true, "problems": [], "cost_usd": 0.00329}}
+{"key": ["opus", "v2", "H10", 2], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "f90c45b1fc50", "passed": true, "problems": [], "cost_usd": 0.00331}}
+{"key": ["opus", "v2", "H10", 5], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "3f979be91975", "passed": true, "problems": [], "cost_usd": 0.00329}}
+{"key": ["opus", "v2", "H10", 4], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "737035441405", "passed": true, "problems": [], "cost_usd": 0.00332}}
+{"key": ["opus", "v2", "H10", 3], "verdict": {"model": ["claude-sonnet-5-5"], "prompt": "0e7f660b617a", "conversation": "bcb0e76920ee", "passed": true, "problems": [], "cost_usd": 0.00339}}

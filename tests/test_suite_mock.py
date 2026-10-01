@@ -39,3 +39,11 @@ def test_versions_can_mix_prompt_and_tools():
 def test_redaction_keeps_saved_json_valid():
     out = json.loads(redact_json('{"reason": "see /Users/alice/report.txt", "to": ["someone@gmail.com"]}'))
     assert out == {"reason": "see [path]", "to": ["[email]"]}
+
+
+def test_the_fixed_app_opens_a_hand_off_the_agent_missed():
+    scn = next(s for s in SCENARIOS if s["id"] == "S08")  # "I want my $350 back": the mock never asks for a person
+    fixed = run_one("mock", "mock", "v2", scn, 1)
+    assert fixed["escalated"] and fixed["tool_calls"][-1]["tool"] == "post_chat_handoff"
+    assert not run_one("mock", "mock", "v1", scn, 1)["escalated"]
+    assert not run_one("mock", "mock", "v1+v2", scn, 1)["escalated"]  # only the fixed app runs the check

@@ -1,6 +1,6 @@
 # Held-out scenarios. Same format as scenarios.yaml and the same store.
-# They were written after the v2 prompt and tools were final, and neither was changed afterwards,
-# so they show how the fixes do on requests they were not built around.
+# They were written after the first version of the v2 prompt and tools was final. The hand-off
+# changes to v2 came after these results had been seen, so for the current v2 they are not unseen.
 
 - id: H01
   category: facts

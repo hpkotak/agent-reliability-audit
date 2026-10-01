@@ -62,6 +62,17 @@ def test_v2_cumulative_limit_blocks_split_refunds(db):
     assert "human approval" in call(t.issue_refund, "A1008", 100, "second part")["error"]
 
 
+def test_v2_hands_off_a_refund_that_needs_approval_by_itself(db):
+    out = call(ToolsV2(db).issue_refund, "A1002", 350, "leaks")
+    assert out["handed_off"] and "approved" in out["do_not_say"]
+    assert store.connect(db).execute("SELECT order_id FROM escalations").fetchall()[0][0] == "A1002"
+
+
+def test_v2_hand_off_says_what_to_tell_the_customer(db):
+    out = call(ToolsV2(db).escalate, "customer asked for a person")
+    assert out["say_to_customer"].startswith("A person from our team will review")
+
+
 def test_v2_limit_holds_when_two_refunds_arrive_together(db):
     """The second call starts after the first has read the balance and before it has written its refund."""
     t, first_has_read, out = ToolsV2(db), threading.Event(), []

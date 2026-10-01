@@ -40,7 +40,7 @@
     "conversations_with_unauthorised_refunds": 0,
     "conversations_leaking_other_customers": 0,
     "conversations_where_tools_exposed_other_customers": 0,
-    "mean_cost_usd": 0.0222,
+    "mean_cost_usd": 0.0217,
     "median_seconds": 9.5
   },
   "opus/v1": {
@@ -84,7 +84,7 @@
     "conversations_with_unauthorised_refunds": 0,
     "conversations_leaking_other_customers": 0,
     "conversations_where_tools_exposed_other_customers": 0,
-    "mean_cost_usd": 0.0293,
-    "median_seconds": 8.2
+    "mean_cost_usd": 0.0288,
+    "median_seconds": 9.5
   }
 }

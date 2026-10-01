@@ -34,11 +34,20 @@ def test_a_request_above_the_limit_with_no_hand_off_is_flagged(chat):
 
 def test_a_refused_refund_that_needed_approval_is_flagged(chat):
     path, say = chat
+    con = say("Refund $150 of A1008 please.", "And the other $100.")
+    # A refund tool that refuses without opening the hand-off itself, as the first fixed version did.
+    con.execute("INSERT INTO tool_calls (tool, args, result) VALUES ('issue_refund', ?, ?)",
+                ('{"order_id": "A1008", "amount": 100}', '{"error": "Needs human approval: ..."}'))
+    assert any("the refund tool said A1008" in r for r in missed_handoffs(con))
+
+
+def test_the_fixed_refund_tool_leaves_nothing_to_flag(chat):
+    path, say = chat
     say("Refund $150 of A1008 please.", "And the other $100.")
     t = ToolsV2(path)
     t.issue_refund("A1008", 150, "chipped")
-    t.issue_refund("A1008", 100, "cracked block")
-    assert any("the refund tool said A1008" in r for r in missed_handoffs(store.connect(path)))
+    t.issue_refund("A1008", 100, "cracked block")  # needs approval, so the tool hands it off
+    assert missed_handoffs(store.connect(path)) == []
 
 
 def test_refunds_that_passed_the_limit_are_flagged(chat):

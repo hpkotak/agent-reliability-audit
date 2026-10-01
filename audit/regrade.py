@@ -35,9 +35,9 @@ def rebuild(row: dict, path: str):
         con.execute("INSERT INTO tool_calls (tool, args, result) VALUES (?,?,?)",
                     (c["tool"], json.dumps(c["args"]), c["result"]))
         out = json.loads(c["result"])
-        if c["tool"] == "escalate":
+        if c["tool"] in ("escalate", "post_chat_handoff") or (c["tool"] == "issue_refund" and out.get("handed_off")):
             con.execute("INSERT INTO escalations (order_id, reason) VALUES (?,?)",
-                        (c["args"].get("order_id") or None, c["args"]["reason"]))
+                        (c["args"].get("order_id") or None, c["args"].get("reason", "")))
         elif c["tool"] == "issue_refund" and out.get("ok"):
             con.execute("INSERT INTO refunds (order_id, amount, reason) VALUES (?,?,?)",
                         (c["args"]["order_id"].strip().upper(), out["refunded"], c["args"]["reason"]))
